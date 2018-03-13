@@ -14,22 +14,29 @@ train_bag_of_words = load_svmlight_file("aclImdb/train/labeledBow.feat")
 
 X_train = train_bag_of_words[0]
 X_test = test_bag_of_words[0]
+Y_train = train_bag_of_words[1]
+Y_test = test_bag_of_words[1]
 
+start_time = time.time()
 counts_train = np.array([ i.count_nonzero() for i in X_train ])
 counts_test = np.array([ i.count_nonzero() for i in X_test ])
-print("Counts done")
+print("Counts completed in %d Seconds" % int(time.time()-start_time))
+
+start_time = time.time()
 X_train = X_train / counts_train[:,None]
 X_test = X_test / counts_test[:,None]
-print("Divisions done")
-Y_train = train_bag_of_words[1]
-Y_train = np.array([0 if i <= 4 else 1 for i in Y_train])
+print("Divisions completed in %d Seconds" % int(time.time()-start_time))
 
-Y_test = test_bag_of_words[1]
+start_time = time.time()
+Y_train = np.array([0 if i <= 4 else 1 for i in Y_train])
 Y_test = np.array([0 if i <= 4 else 1 for i in Y_test])
-# print(X_train.shape, X_test.shape, X_test[0].shape, X_train[0].shape)
+print("Binary conversion completed in %d Seconds" % int(time.time()-start_time))
+
+start_time = time.time()
+X_train = sparse.csc_matrix(X_train)
 X_train = X_train[:, : 89523]
-X_train = sparse.csr_matrix(X_train)
-X_test = sparse.csr_matrix(X_test)
+X_test = sparse.csc_matrix(X_test)
+print("Transformation completed in %d Seconds" % int(time.time()-start_time))
 # print(type(X_train))
 # print(X_train.shape)
 print("Training...")
