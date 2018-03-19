@@ -25,6 +25,7 @@ wheels/
 .installed.cfg
 *.egg
 
+/glove.6B
 /aclImdb
 
 # PyInstaller
