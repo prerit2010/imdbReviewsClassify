@@ -27,6 +27,7 @@ wheels/
 
 /glove.6B
 /aclImdb
+/glove_arrays
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
