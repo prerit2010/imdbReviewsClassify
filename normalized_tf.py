@@ -33,10 +33,10 @@ X_train = X_train[:, : 89523]
 X_test = sparse.csc_matrix(X_test)
 
 print("Training...")
-clf = BernoulliNB()
+# clf = BernoulliNB()
 # clf = LogisticRegression()
-# clf = svm.SVC(max_iter=1000)
-# clf = MLPClassifier(learning_rate_init=0.001, verbose=True, max_iter=50, hidden_layer_sizes=(20, ))
+clf = svm.SVC(verbose=True)
+# clf = MLPClassifier(learning_rate_init=0.001, verbose=True, max_iter=50, hidden_layer_sizes=(10, ))
 start_time = time.time()
 clf.fit(X_train, Y_train)
 print("Training completed in %d Seconds" % int(time.time()-start_time))
