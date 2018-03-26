@@ -7,6 +7,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
 import time
 from scipy import sign
+from scipy.sparse import csr_matrix
 
 test_bag_of_words = load_svmlight_file("aclImdb/test/labeledBow.feat")
 train_bag_of_words = load_svmlight_file("aclImdb/train/labeledBow.feat")
@@ -25,8 +26,8 @@ X_train = X_train[:, : 89523]
 print("Training...")
 # clf = BernoulliNB()
 # clf = LogisticRegression()
-# clf = svm.SVC(max_iter=1000)
-clf = MLPClassifier(learning_rate_init=0.001, verbose=True, max_iter=50, hidden_layer_sizes=(10, ))
+clf = svm.SVC(verbose=True)
+# clf = MLPClassifier(learning_rate_init=0.001, verbose=True, max_iter=50, hidden_layer_sizes=(10, ))
 start_time = time.time()
 clf.fit(X_train, Y_train)
 print("Training completed in %d Seconds" % int(time.time()-start_time))
