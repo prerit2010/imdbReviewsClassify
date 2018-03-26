@@ -41,7 +41,7 @@ if not os.path.exists("wordvec_arrays"):
 # 			count = 0
 # 			for token in tokens:
 # 				try:
-# 					vec = model[token]
+# 					vec = model[token.lower()]
 # 					count += 1
 # 				except:
 # 					continue
@@ -77,8 +77,8 @@ Y_test = np.load("wordvec_arrays/Y_test_wordvec_"+ str(dimension)+ ".npy")
 print("Training...")
 # clf = BernoulliNB()
 # clf = LogisticRegression()
-# clf = svm.SVC()
-clf = MLPClassifier(learning_rate_init=0.01, verbose=True, max_iter=200, hidden_layer_sizes=(500, ))
+clf = svm.SVC(verbose=True)
+# clf = MLPClassifier(learning_rate_init=0.001, verbose=True, max_iter=200, hidden_layer_sizes=(500, ))
 start_time = time.time()
 clf.fit(X_train, Y_train)
 print("Training completed in %d Seconds" % int(time.time()-start_time))
